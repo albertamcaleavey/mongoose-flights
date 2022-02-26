@@ -4,11 +4,34 @@ const Schema = mongoose.Schema
 // creates a shortcut to the mongoose.Schema class (optional but convenient)
 
 const flightSchema = new Schema({
-  airline = String,
-  airport = String,
-  flightNo = Number,
-  departs = Date
-})
+  airline: {
+    type: String,
+    enum: ['American', 'Southwest', 'United']
+  },
+  airport: {
+    type: String,
+    enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
+    default: 'DEN'
+  },
+  flightNo: {
+    type: Number,
+    required: true
+    // function(input) {
+    //   if(input > 10 && input < 9999){
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // },
+    
+  },
+  departs: {
+    type: Date,
+    // default: function(){
+    //   return new Date().getFullYear()
+    // }
+  }
+}, {timestamps: true})
 //defines a mongoose schema
 // String, Boolean, Number are  schemaTypes for properties 
 

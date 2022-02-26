@@ -10,6 +10,8 @@ import * as flightsCtrl from '../controllers/flights.js'
 // listens for a get request on the /new page
 router.get('/new', flightsCtrl.new)
 
+router.post('/', flightsCtrl.create)
+
 export {
   router
 }

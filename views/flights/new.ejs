@@ -10,27 +10,29 @@
 <body>
   <h1>Add a New Flight</h1>
   <form action="/flights" method="POST">
-    <label>Airline:
-      <input type="text" name="airline">
+    <label>Airline
+      <select name="airline">
+        <option value="American">American</option>
+        <option value="Southwest">Southwest</option>
+        <option value="United">United</option>
+      </select>
     </label><br>
     <label>Airport
       <select name="airport">
-        <option value="JFK">JFK</option>
-        <option value="EWR">EWR</option>
-        <option value="LGA">LGA</option>
-        <option value="PHL">PHL</option>
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
       </select>
     </label><br>
     <label>Flight Number:
-      <input type="text" name="flight-number">
+      <input type="text" name="flightNo">
     </label><br>
     <label>Departs
       <input type="datetime-local" name="departs">
     </label><br>
-    <label>Now Showing:
-      <input type="checkbox" name="nowShowing" checked>
-    </label><br>
-    <button type="submit">Add Movie</button>
+    <button type="submit">Add Flight</button>
   </form>
 </body>
 </html>
