@@ -15,15 +15,9 @@ const flightSchema = new Schema({
   },
   flightNo: {
     type: Number,
+    min: 10,
+    max: 9999,
     required: true
-    // function(input) {
-    //   if(input > 10 && input < 9999){
-    //     return true
-    //   } else {
-    //     return false
-    //   }
-    // },
-    
   },
   departs: {
     type: Date,
@@ -31,7 +25,9 @@ const flightSchema = new Schema({
     //   return new Date().getFullYear()
     // }
   }
-}, {timestamps: true})
+}, {
+  timestamps: true
+})
 //defines a mongoose schema
 // String, Boolean, Number are  schemaTypes for properties 
 

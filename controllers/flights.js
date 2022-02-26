@@ -5,7 +5,10 @@ function newFlight(req, res) {
 }
 
 function create(req, res) {
-  // convert user input to match the Flight model
+  // deletes properties whose values are 'AUS' to allow for default values to be assigned
+  for (let key in req.body) {
+    if (req.body[key] === 'AUS') delete req.body[key]
+  }
   const flight = new Flight(req.body)
   console.log(flight)
   flight.save(function(err) {
