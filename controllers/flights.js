@@ -5,12 +5,13 @@ function newFlight(req, res) {
 }
 
 function create(req, res) {
-  // deletes properties whose values are 'AUS' to allow for default values to be assigned
+  // deletes properties whose values are empty string to allow for default values to be assigned
   for (let key in req.body) {
-    if (req.body[key] === 'AUS') delete req.body[key]
+    if (req.body[key] === '') delete req.body[key]
   }
   const flight = new Flight(req.body)
   console.log(flight)
+  console.log(new Date().getFullYear())
   flight.save(function(err) {
     if (err) return res.redirect('/flights/new')
     res.redirect('/flights')
