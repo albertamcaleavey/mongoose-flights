@@ -36,3 +36,6 @@ export {
   create,
   index
 }
+
+// QUESTIONS
+// what goes in the object in res.render- i know that is the data that is being passed to the view, but is there a syntax to follow? or is it just whatever the view needs 
