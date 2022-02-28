@@ -1,6 +1,9 @@
 import { Flight } from '../models/flight.js'
 
 function newFlight(req, res) {
+  // in memory flight containing default departure date
+  // const newFlight = new Flight()
+  // console.log(newFlight)
   res.render('flights/new')
 }
 
@@ -10,8 +13,8 @@ function create(req, res) {
     if (req.body[key] === '') delete req.body[key]
   }
   const flight = new Flight(req.body)
-  console.log(flight)
-  console.log(new Date().getFullYear())
+  // console.log(flight)
+  // console.log(new Date().getFullYear())
   flight.save(function(err) {
     if (err) return res.redirect('/flights/new')
     res.redirect('/flights')
@@ -24,7 +27,6 @@ function index(req, res) {
       flights: flights
     })
   })
-  
 }
   
 
