@@ -1,4 +1,5 @@
 import { Flight } from '../models/flight.js'
+import { Meal } from '../models/meal.js'
 
 function newFlight(req, res) {
   // in memory flight containing default departure date
@@ -33,10 +34,15 @@ function index(req, res) {
 }
   
 function show(req, res) {
-  Flight.findById(req.params.id, function (err, flight) {
-    res.render('flights/show', {
+  Flight.findById(req.params.id)
+  .populate('meals')
+  .exec(function (err, flight) {
+    Meal.find({_id: {$nin: flight.meals}}, function(err, meal) {
+      res.render('flights/show', {
       flight: flight,
-      title: 'Flight Detail'
+      title: 'Flight Detail',
+      meal: meal,
+      })
     })
   })
 }
@@ -62,8 +68,6 @@ export {
   index,
   show,
   createTicket,
-  deleteFlight as delete
+  deleteFlight as delete,
 }
 
-// QUESTIONS
-// what goes in the object in res.render- i know that is the data that is being passed to the view, but is there a syntax to follow? or is it just whatever the view needs 
