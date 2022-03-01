@@ -20,7 +20,7 @@ function create(req, res) {
   // console.log(new Date().getFullYear())
   flight.save(function(err) {
     if (err) return res.redirect('/flights/new')
-    res.redirect('/flights')
+    res.redirect(`/flights/${flight._id}`)
   })
 }
 
@@ -37,11 +37,11 @@ function show(req, res) {
   Flight.findById(req.params.id)
   .populate('meals')
   .exec(function (err, flight) {
-    Meal.find({_id: {$nin: flight.meals}}, function(err, meal) {
+    Meal.find({_id: {$nin: flight.meals}}, function(err, meals) {
       res.render('flights/show', {
       flight: flight,
       title: 'Flight Detail',
-      meal: meal,
+      meals: meals,
       })
     })
   })
@@ -62,6 +62,15 @@ function deleteFlight(req,res) {
   })
 }
 
+function addToMeals(req, res) {
+  Flight.findById(req.params.id, function(err, flight) {
+    flight.meals.push(req.body.mealId)
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
 export {
   newFlight as new,
   create,
@@ -69,5 +78,6 @@ export {
   show,
   createTicket,
   deleteFlight as delete,
+  addToMeals
 }
 
