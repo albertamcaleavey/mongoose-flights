@@ -4,7 +4,9 @@ function newFlight(req, res) {
   // in memory flight containing default departure date
   // const newFlight = new Flight()
   // console.log(newFlight)
-  res.render('flights/new')
+  res.render('flights/new', {
+    title: "Add Flight",
+  })
 }
 
 function create(req, res) {
@@ -24,7 +26,8 @@ function create(req, res) {
 function index(req, res) {
   Flight.find({}, function(err, flights){
     res.render('flights/index', {
-      flights: flights
+      flights: flights,
+      title: 'All Flights'
     })
   })
 }
