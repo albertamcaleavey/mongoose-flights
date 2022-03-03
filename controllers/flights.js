@@ -3,24 +3,20 @@ import { Meal } from '../models/meal.js'
 
 function newFlight(req, res) {
   // in memory flight containing default departure date
-  // const newFlight = new Flight()
-  // console.log(newFlight)
   res.render('flights/new', {
     title: "Add Flight",
   })
 }
 
 function create(req, res) {
-  // deletes properties whose values are empty string to allow for default values to be assigned
+  // deletes properties whose values are empty string to allow for default values to be assigned (default departs)
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key]
   }
   const flight = new Flight(req.body)
-  // console.log(flight)
-  // console.log(new Date().getFullYear())
   flight.save(function(err) {
     if (err) return res.redirect('/flights/new')
-    res.redirect(`/flights/${flight._id}`)
+    res.redirect('/flights')
   })
 }
 
