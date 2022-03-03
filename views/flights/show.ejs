@@ -14,32 +14,25 @@
       <div>Departs: </div>
       <div><%= flight.departs %></div>
     </section>
-
-    <div>Meals:</div>
-  <ul>
-    <% flight.meals.forEach(meal => { %>
-      <li><%= meal.name %></li>
-    <% }) %>
-  </ul>
-  <%# end cast list %>
-</section>
-	
-<%# add to cast form below this comment %>
-<form id="add-meal-to-meals" action="/flights/<%= flight._id  %>/meals" method="POST">
-  <select name="mealId">
-    <% meals.forEach(meal => { %>
-      <option value="<%= meal._id %>"><%= meal.name %></option>
-    <% }) %>
-  </select>
-  <button type="submit">Add to Meals</button>
-</form>
-
-    <h2>Tickets</h2>
-  <form 
-    action="/flights/<%= flight._id %>/tickets"
-    method="POST"
-  >
-  <label>Seat:
+    <h2>Meals:</h2>
+    <section>
+    <form id="add-meal-to-meals" action="/flights/<%= flight._id  %>/meals" method="POST">
+      <select name="mealId">
+        <% meals.forEach(meal => { %>
+          <option value="<%= meal._id %>"><%= meal.name %></option>
+          <% }) %>
+        </select>
+        <button type="submit">Add to Meals</button>
+      </form>
+      <ul id="meals">
+        <% flight.meals.forEach(meal => { %>
+          <li><%= meal.name %></li>
+          <% }) %>
+      </ul>
+    </section>
+      <h2>Tickets</h2>
+      <form id="add-ticket-form" action="/flights/<%= flight._id %>/tickets" method="POST">
+        <label>Seat:
     <input name="seat" required pattern="[A-F][1-9]\d?">
   </label><br>
     <label>Price:
